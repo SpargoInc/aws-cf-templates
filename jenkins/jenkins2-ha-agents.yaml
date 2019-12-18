@@ -60,6 +60,10 @@ Metadata:
       - AgentMinSize
       - AgentMaxBuildWaitTimeInSeconds
       - AgentLogsRetentionInDays
+    - Label:
+        default: 'Security'
+      Parameters:
+      - CIDRWhiteList
 Parameters:
   ParentVPCStack:
     Description: 'Stack name of parent VPC stack based on vpc/vpc-*azs.yaml template.'
@@ -208,6 +212,10 @@ Parameters:
     Description: 'A CRON expression specifying when AWS Backup initiates a backup job.'
     Type: String
     Default: 'cron(0 5 ? * * *)'
+  CIDRWhiteList:
+    # TODO: Add some validation here.
+    Description: 'A whitelist of CIRD ranges which will be allowed to access Jenkins.'
+    Type: String
 Mappings:
   RegionMap:
     'eu-north-1':
@@ -363,7 +371,7 @@ Resources:
       IpProtocol: tcp
       FromPort: 80
       ToPort: 80
-      CidrIp: '0.0.0.0/0'
+      CidrIp: '${CIDRWhiteList}'
   MasterELBSGInAuthProxy:
     Type: 'AWS::EC2::SecurityGroupIngress'
     Condition: HasAuthProxySecurityGroup

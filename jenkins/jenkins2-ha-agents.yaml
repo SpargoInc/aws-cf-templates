@@ -123,7 +123,7 @@ Parameters:
   MasterInstanceType:
     Description: 'The instance type of the Jenkins master.'
     Type: String
-    Default: 't2.micro'
+    Default: 't3.medium'
   MasterAdminPassword:
     Description: 'A password for the Jenkins master admin. Must not be changed!'
     Type: String
@@ -158,7 +158,7 @@ Parameters:
   AgentInstanceType:
     Description: 'The instance type of the Jenkins agents.'
     Type: String
-    Default: 't2.micro'
+    Default: 't3.medium'
   AgentVolumeSize:
     Description: 'The root volume size, in Gibibytes (GiB). Keep in mind that Jenkins home lives on EFS.'
     Type: Number

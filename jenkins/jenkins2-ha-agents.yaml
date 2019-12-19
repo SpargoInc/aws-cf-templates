@@ -1316,6 +1316,8 @@ Resources:
       - Key: Name
         Value: 'jenkins-master'
         PropagateAtLaunch: true
+      MetricsCollection:
+        Granularity: 1Minute
     CreationPolicy:
       ResourceSignal:
         Timeout: PT15M

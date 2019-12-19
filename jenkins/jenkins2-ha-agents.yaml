@@ -2027,6 +2027,8 @@ Resources:
       - Key: Name
         Value: 'jenkins-agent'
         PropagateAtLaunch: true
+      MetricsCollection:
+        Granularity: 1Minute
     CreationPolicy:
       ResourceSignal:
         Timeout: PT10M

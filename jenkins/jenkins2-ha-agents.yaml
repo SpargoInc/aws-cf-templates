@@ -64,6 +64,10 @@ Metadata:
         default: 'Security'
       Parameters:
       - CIDRWhiteList
+    - Label:
+        default: 'Jenkins'
+      Parameters:
+      - JenkinsPackage
 Parameters:
   ParentVPCStack:
     Description: 'Stack name of parent VPC stack based on vpc/vpc-*azs.yaml template.'
@@ -213,10 +217,13 @@ Parameters:
     Type: String
     Default: 'cron(0 5 ? * * *)'
   CIDRWhiteList:
-    # TODO: Add some validation here.
     Description: 'A whitelist of CIRD ranges which will be allowed to access Jenkins.'
-    AllowedPattern: '((\d{1,3})\.){3}\d{1,3}/\d{1,2}'
+    # AllowedPattern: '((\d{1,3})\.){3}\d{1,3}/\d{1,2}'
     Type: String
+  JenkinsPackage:
+    Description: 'The name of the package to install from this list: https://pkg.jenkins.io/redhat-stable/'
+    Type: String
+    Default: 'jenkins-2.190.3-1.1.noarch.rpm'
 Mappings:
   RegionMap:
     'eu-north-1':
@@ -895,6 +902,7 @@ Resources:
           packages:
             rpm:
               jenkins: 'https://pkg.jenkins.io/redhat-stable/jenkins-2.190.3-1.1.noarch.rpm'
+              jenkins: !Join [ "/", ['https://pkg.jenkins.io/redhat-stable', !Ref JenkinsPackage ] ]
             yum:
               'java-1.8.0-amazon-corretto': []
               'ruby': []
@@ -1317,7 +1325,7 @@ Resources:
         Value: 'jenkins-master'
         PropagateAtLaunch: true
       MetricsCollection:
-        Granularity: 1Minute
+      - Granularity: 1Minute
     CreationPolicy:
       ResourceSignal:
         Timeout: PT15M
@@ -2028,7 +2036,7 @@ Resources:
         Value: 'jenkins-agent'
         PropagateAtLaunch: true
       MetricsCollection:
-        Granularity: 1Minute
+      - Granularity: 1Minute
     CreationPolicy:
       ResourceSignal:
         Timeout: PT10M

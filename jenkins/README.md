@@ -17,7 +17,7 @@ There are two stacks that need to be deployed:
 
 1. VPC
      
-     aws cloudformation deploy \
+        aws cloudformation deploy \
             --template-file "./../vpc/vpc-2azs.yaml" \
             --capabilities CAPABILITY_IAM \
             --s3-bucket "jenkins-cf-templates-***REMOVED***" \

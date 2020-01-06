@@ -116,10 +116,8 @@ main() {
     local bucket_name
 
     # echo "Creating #3 bucket if it doesnt exist..."
-    # bucket_name="$(_ensure_s3_bucket)"
+    bucket_name="$(_ensure_s3_bucket)"
     # echo "S3 bucket '${bucket_name} created."
-
-    bucket_name="jenkins-cf-templates-***REMOVED***"
 
     # echo "Deploying VPC"
     # _cf_deploy_vpc ${bucket_name}

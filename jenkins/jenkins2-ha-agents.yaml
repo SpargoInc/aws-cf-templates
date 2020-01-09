@@ -127,9 +127,9 @@ Parameters:
     - 'internet-facing'
     - internal
   MasterInstanceType:
-    Description: 'The instance type of the Jenkins master.'
+    Description: 'The instance type of the Jenkins master. t2.micro works but t3.medium is better.'
     Type: String
-    Default: 't3.medium'
+    Default: 't2.micro'
   MasterAdminPassword:
     Description: 'A password for the Jenkins master admin. Must not be changed!'
     Type: String
@@ -167,9 +167,9 @@ Parameters:
     - Public
     - Private
   AgentInstanceType:
-    Description: 'The instance type of the Jenkins agents.'
+    Description: 'The instance type of the Jenkins agents. t2.micro works but t3.medium or c5.large work better.'
     Type: String
-    Default: 't3.medium'
+    Default: 't2.micro'
   AgentVolumeSize:
     Description: 'The root volume size, in Gibibytes (GiB). Keep in mind that Jenkins home lives on EFS.'
     Type: Number

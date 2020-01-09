@@ -915,7 +915,6 @@ Resources:
         install:
           packages:
             rpm:
-              jenkins: 'https://pkg.jenkins.io/redhat-stable/jenkins-2.190.3-1.1.noarch.rpm'
               jenkins: !Join [ "/", ['https://pkg.jenkins.io/redhat-stable', !Ref JenkinsPackage ] ]
             yum:
               'java-1.8.0-amazon-corretto': []
